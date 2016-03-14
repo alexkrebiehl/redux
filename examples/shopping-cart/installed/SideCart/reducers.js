@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { createReducer } from 'redux-act'
 import { cartAdd, cartCheckout } from './actions'
 
+// todo: design better coupling
 import { getProducts } from '../ShoppingGrid/reducers'
 
 const initialState = {
@@ -48,26 +49,19 @@ export default combineReducers({
   quantityByUpc
 })
 
-export function getCartProducts(state) {
-  return getProducts(state.products).filter(p => state.cart.productUpcs.includes(p.upc))
-}
-
-export function getTotalPrice(state) {
-  return getCartProducts(state).reduce(
-      (total, p) =>
-        total + (p.price * getQuantity(state.cart, p.upc))
-      , 0
-  )
-}
-
+// todo: state should always be mirroring the one exported, never any higher
 export function getTotalQuantity(state) {
   return state.productUpcs.reduce(
-    (total, p) =>
-      total + getQuantity(state, p)
+    (total, product) =>
+      total + getQuantity(state, product)
     , 0
   )
 }
 
 export function getQuantity(state, productId) {
   return state.quantityByUpc[productId] || 0
+}
+
+export function inCart(state, productId) {
+  return state.productUpcs.includes(productId);
 }

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { createReducer } from 'redux-act'
 import { getAllProducts } from './actions'
 
-// todo: remove bad coupling
+// todo: design better coupling
 import { cartAdd } from '../../installed/SideCart/actions'
 
 const initialState = {
@@ -21,6 +21,7 @@ const productsByUpc = createReducer({
       , {...state}),
   [getAllProducts.error]: (state, err) => state,
 
+  // todo: design better coupling
   [cartAdd.request]: (state, product) => {
     return {
       ...state,
@@ -47,6 +48,7 @@ export default combineReducers({
   productsByUpc
 })
 
+// todo: 'state' should ALWAYS be the one that is 'default exported'
 export function getProducts(state) {
   return Object
       .keys(state.productsByUpc)

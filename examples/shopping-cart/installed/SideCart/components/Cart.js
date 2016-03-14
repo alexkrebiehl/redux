@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import Product from '../../ShoppingGrid/components/Product'
 import { cartCheckout } from '../actions'
-import { getTotalPrice, getCartProducts } from '../reducers'
 
 export class Cart extends Component {
 
@@ -47,9 +46,6 @@ export class Cart extends Component {
 }
 
 export default connect(
-    (state) => ({
-      products: getCartProducts(state),
-      total: getTotalPrice(state)
-    }),
+    null,
     { onCheckoutClicked: cartCheckout }
 )(Cart)

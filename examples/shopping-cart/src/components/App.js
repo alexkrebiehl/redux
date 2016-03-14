@@ -3,11 +3,19 @@ import { connect } from 'react-redux'
 
 import Cart from '../../installed/SideCart/components/Cart'
 import { cartAdd } from '../../installed/SideCart/actions'
+import { getTotalPrice, getProductsInCart } from '../reducers'
 
 import ProductsList from '../../installed/ShoppingGrid/components/ProductsList'
 
 export class App extends Component {
   static propTypes = {
+    products: PropTypes.arrayOf(PropTypes.shape({
+      upc: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      inventory: PropTypes.number.isRequired
+    })).isRequired,
+    total: PropTypes.number,
     dispatch: PropTypes.func
   }
 
@@ -17,7 +25,7 @@ export class App extends Component {
       <div>
         <h2>ClickList</h2>
         <hr/>
-        <Cart />
+        <Cart products={products} total={total}/>
 
         <hr/>
         <ProductsList />
@@ -52,4 +60,9 @@ export class App extends Component {
   }
 }
 
-export default connect()(App);
+export default connect(
+    (state) => ({
+      products: getProductsInCart(state),
+      total: getTotalPrice(state)
+    })
+)(App)

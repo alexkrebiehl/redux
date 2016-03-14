@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { getProducts } from '../reducers'
 import ProductItem from './ProductItem'
 
-// todo: remove bad coupling
+// todo: design better coupling
 import { cartAdd } from '../../../installed/SideCart/actions'
 
 export class ProductsList extends Component {
@@ -36,9 +36,11 @@ export class ProductsList extends Component {
 
 export default connect(
   (state) => ({
+    // todo: design better abstracted sub-state selection
     products: getProducts(state.products)
   }),
   {
+    // todo: design better coupling
     addToCart: cartAdd
   }
 )(ProductsList)

@@ -10,7 +10,8 @@ export const cartCheckout = createActionAsync('clicklist/cart/CHECKOUT', cartChe
 
 function cartAddApi(dispatchers, payload, getState) {
 
-  //if (!ifProductHasInventory(getState(), payload.upc)) return;
+  // todo: design way for other components to add conditions/middleware
+  //if (state.products.byUpc[upc].inventory === 0, payload.upc)) return;
 
   dispatchers.request(payload)
 
@@ -26,8 +27,4 @@ function cartCheckoutApi(dispatchers, payload, getState) {
   return shop.buyProducts(payload)
       .then((res) => dispatchers.ok(payload))
       .catch((err) => dispatchers.error(payload))
-}
-
-function ifProductHasInventory(state, upc) {
-  return state.products.byUpc[upc].inventory > 0
 }
