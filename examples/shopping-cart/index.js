@@ -8,7 +8,7 @@ import thunk from 'redux-thunk'
 import App from './src/components/App'
 
 import reducers from './src/reducers'
-import { getAllProducts } from './installed/ShoppingGrid/actions'
+import { getAllProducts } from './installed/shopping-common/actions/products'
 //import ProductsList from '../components/ProductsList'
 
 const middleware = process.env.NODE_ENV === 'production' ?

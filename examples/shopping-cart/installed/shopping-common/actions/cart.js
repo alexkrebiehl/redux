@@ -1,8 +1,10 @@
-import shop from '../../api/shop'
-import { createActionAsync } from '../redux-act-helpers'
+import shop from '../../../api/shop'
+import { createActionAsync } from '../../redux-act-helpers'
 
 export const cartAdd = createActionAsync('clicklist/cart/ADD', cartAddApi)
+export const cartRemove = createActionAsync('clicklist/cart/REMOVE', cartRemoveApi)
 export const cartCheckout = createActionAsync('clicklist/cart/CHECKOUT', cartCheckoutApi)
+
 
 // Example Usage:
 // cartAdd({ upc: '123' })
@@ -15,6 +17,13 @@ function cartAddApi(dispatchers, payload, getState) {
   dispatchers.request(payload)
 
   return shop.addProduct(payload)
+      .then((res) => dispatchers.ok(payload))
+      .catch((err) => dispatchers.error(payload))
+}
+
+function cartRemoveApi(dispatchers, payload, getState) {
+  dispatchers.request(payload)
+  return shop.removeProduct(payload)
       .then((res) => dispatchers.ok(payload))
       .catch((err) => dispatchers.error(payload))
 }

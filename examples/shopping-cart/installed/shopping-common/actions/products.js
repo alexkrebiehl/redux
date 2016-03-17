@@ -1,5 +1,5 @@
-import shop from '../../api/shop'
-import { createActionAsync } from '../redux-act-helpers'
+import shop from '../../../api/shop'
+import { createActionAsync } from '../../redux-act-helpers'
 
 export const getAllProducts = createActionAsync('clicklist/products/GET_ALL', getAllProductsApi)
 

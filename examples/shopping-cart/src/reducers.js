@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { default as cart } from '../installed/SideCart/reducers'
-import { default as products } from '../installed/ShoppingGrid/reducers'
+import { default as cart } from '../installed/shopping-common/reducers/cart'
+import { default as products } from '../installed/shopping-common/reducers/products'
 
 export default combineReducers({
   cart,

@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import Product from '../../ShoppingGrid/components/Product'
-import { cartCheckout } from '../actions'
-import { getTotalPrice, getCartProducts } from '../reducers'
+import Product from '../../shopping-common/components/Product'
+import { cartCheckout } from '../../shopping-common/actions/cart'
 
 export class Cart extends Component {
 
@@ -44,6 +43,30 @@ export class Cart extends Component {
       </div>
     )
   }
+}
+
+export function getTotalQuantity(state) {
+  return state.productUpcs.reduce(
+    (total, p) =>
+      total + getQuantity(state, p)
+    , 0
+  )
+}
+
+export function getQuantity(state, productId) {
+  return state.quantityByUpc[productId] || 0
+}
+
+export function getCartProducts(state) {
+  return Object.keys(state.products.productsByUpc).map(upc => state.products.productsByUpc[upc]).filter(p => state.cart.quantityByUpc[p.upc] > 0)
+}
+
+export function getTotalPrice(state) {
+  return getCartProducts(state).reduce(
+      (total, p) =>
+        total + (p.price * getQuantity(state.cart, p.upc))
+      , 0
+  )
 }
 
 export default connect(

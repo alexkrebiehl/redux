@@ -22,6 +22,16 @@ export default {
     })
   },
 
+  removeProduct(product) {
+    return new Promise((resolve, reject) => {
+      console.log(`shop::removeProduct::17    product:`, product)
+      setTimeout(product.upc && !product.fail
+          ? resolve
+          : reject.bind(null, 'Product is missing upc'),
+      TIMEOUT)
+    })
+  },
+
   buyProducts() {
     return new Promise((resolve, reject) => {
       setTimeout(resolve, TIMEOUT)

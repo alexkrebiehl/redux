@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import Product from './Product'
+import Product from '../../shopping-common/components/Product'
 
 export default class ProductItem extends Component {
 

@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { getProducts } from '../reducers'
 import ProductItem from './ProductItem'
 
 // todo: remove bad coupling
-import { cartAdd } from '../../../installed/SideCart/actions'
+import { cartAdd } from '../../shopping-common/actions/cart'
+import { getProducts } from '../../shopping-common/transformers/products'
 
 export class ProductsList extends Component {
 
@@ -33,6 +33,10 @@ export class ProductsList extends Component {
     )
   }
 }
+
+
+
+
 
 export default connect(
   (state) => ({

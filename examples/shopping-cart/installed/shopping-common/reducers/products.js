@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 import { createReducer } from 'redux-act'
-import { getAllProducts } from './actions'
 
 // todo: remove bad coupling
-import { cartAdd } from '../../installed/SideCart/actions'
+import { getAllProducts } from '../actions/products'
+import { cartAdd } from '../actions/cart'
 
 const initialState = {
   productsByUpc: {}
@@ -47,8 +47,8 @@ export default combineReducers({
   productsByUpc
 })
 
-export function getProducts(state) {
-  return Object
-      .keys(state.productsByUpc)
-      .map(upc => state.productsByUpc[upc])
-}
+// export function getProducts(state) {
+//   return Object
+//       .keys(state.productsByUpc)
+//       .map(upc => state.productsByUpc[upc])
+// }

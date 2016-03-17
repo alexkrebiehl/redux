@@ -7,7 +7,7 @@ export default class Product extends Component {
     quantity: PropTypes.number,
     title: PropTypes.string
   }
-  
+
   render() {
     const { price, quantity, title } = this.props
     return <div> {title} - &#36;{price} {quantity ? `x ${quantity}` : null} </div>
